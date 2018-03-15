@@ -89,27 +89,28 @@ export class OAuth2SecuritySchemeSettings extends SecuritySchemeSettings {
       "<br>*  or any absolute url.")
   ]
 
-  scopes:string[]
+  scopes:Scope[]
 
   $scopes=[
     MetaModel.description("A list of scopes supported by the security scheme as defined in RFC6749 Section 3.3")
   ]
 }
 
+export class Scope{
+    name: string
 
+    description: string
+}
 
-export class SecuritySchemeRef extends Sys.Reference<AbstractSecurityScheme>{
-  securitySchemeName:string
-  $securitySchemeName=[
-    MetaModel.customHandling(),
-    MetaModel.description("Returns the name of security scheme, this reference refers to.")
-  ]
+export class SecuritySchemeRef extends Sys.Reference{
 
   securityScheme:AbstractSecurityScheme
   $securityScheme=[
     MetaModel.customHandling(),
     MetaModel.description("Returns AST node of security scheme, this reference refers to, or null.")
   ]
+
+    settings: SecuritySchemeSettings
 }
 
 export class AbstractSecurityScheme  extends Annotable{

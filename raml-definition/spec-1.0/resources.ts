@@ -8,13 +8,14 @@ import Methods=require("./methods")
 //// Resource Type
 //////////////////
 
-export class ResourceTypeRef extends Sys.Reference<ResourceType>{
-    resourceType:ResourceType
+export class ResourceTypeRef extends Methods.TemplateRef{
+    resourceType:ResourceType;
     $resourceType=[
         MetaModel.customHandling(),
         MetaModel.description("Returns referenced resource type")
     ]
 }
+
 
 export class ResourceType extends ResourceBase  {
     $=[
@@ -22,7 +23,6 @@ export class ResourceType extends ResourceBase  {
        MetaModel.possibleInterfaces(["FragmentDeclaration"])
     ]
 
-    displayName:string
     $displayName=[
         MetaModel.description("The displayName attribute specifies the resource type display name. It is a friendly name used only for  " +
             "display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the " +
@@ -42,11 +42,13 @@ export class ResourceType extends ResourceBase  {
 
 
 
-    parametrizedProperties:DataModel.TypeInstance
-    $parametrizedProperties = [
-        MetaModel.customHandling(),
-        MetaModel.description("Returns object representation of parametrized properties of the resource type")
-    ]
+    // parametrizedProperties:any
+    // $parametrizedProperties = [
+    //     MetaModel.customHandling(),
+    //     MetaModel.description("Returns object representation of parametrized properties of the resource type")
+    // ]
+
+    parameters: string[]
 }
 
 ///////////////////
@@ -54,6 +56,9 @@ export class ResourceType extends ResourceBase  {
 //////////////////
 
 export class ResourceBase extends Annotable{
+
+    displayName:string
+
     methods:Methods.Method[];
     $methods=[
         MetaModel.description("Methods that are part of this resource type definition"),
@@ -107,7 +112,6 @@ export class Resource extends ResourceBase {
         MetaModel.hide()
     ]
 
-    displayName:string
     $displayName=[
         MetaModel.description("The displayName attribute specifies the resource display name. It is a friendly name used only for  " +
             "display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the " +

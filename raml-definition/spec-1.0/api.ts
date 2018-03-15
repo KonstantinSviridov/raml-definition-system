@@ -165,11 +165,11 @@ class Api extends LibraryBase {
       "annotation name.")
   ]
 
-  RAMLVersion:string
-  $RAMLVersion=[
-    MetaModel.customHandling(),
-    MetaModel.description("Returns RAML version. \"RAML10\" string is returned for RAML 1.0. \"RAML08\" string is returned for RAML 0.8.")
-  ]
+  // RAMLVersion:string
+  // $RAMLVersion=[
+  //   MetaModel.customHandling(),
+  //   MetaModel.description("Returns RAML version. \"RAML10\" string is returned for RAML 1.0. \"RAML08\" string is returned for RAML 0.8.")
+  // ]
 }
 
 ///////////////////
@@ -230,8 +230,8 @@ export class UsesDeclaration extends Annotable{
 
 export class FragmentDeclaration extends Annotable{
 
-  uses: UsesDeclaration[]
-  $uses=[MetaModel.embeddedInMaps()]
+    uses: UsesDeclaration[]
+    $uses=[MetaModel.embeddedInMaps()]
 }
 
 class DocumentationItem extends Annotable{

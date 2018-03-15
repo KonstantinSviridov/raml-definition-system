@@ -9,8 +9,19 @@ import Security=require("./security")
 //// Trait
 //////////////////
 
-export class TraitRef extends Sys.Reference<Trait>{
-    trait:Trait
+export class TemplateParameter {
+    name: string
+
+    value: any
+}
+
+export class TemplateRef  extends Sys.Reference{
+
+    parameters: TemplateParameter[]
+}
+
+export class TraitRef extends TemplateRef{
+    trait:Trait;
     $trait=[
         MetaModel.customHandling(),
         MetaModel.description("Returns referenced trait")
@@ -37,11 +48,13 @@ export class Trait extends MethodBase{
 
 
 
-    parametrizedProperties:DataModel.TypeInstance
-    $parametrizedProperties = [
-        MetaModel.customHandling(),
-        MetaModel.description("Returns object representation of parametrized properties of the trait")
-    ]
+    // parametrizedProperties:any
+    // $parametrizedProperties = [
+    //     MetaModel.customHandling(),
+    //     MetaModel.description("Returns object representation of parametrized properties of the trait")
+    // ]
+
+    parameters: string[]
 }
 
 
@@ -53,6 +66,7 @@ export class MethodBase extends Operation{
 
     body:DataModel.TypeDeclaration[]
     $body=[
+        MetaModel.embeddedInMaps(),
         MetaModel.newInstanceName("New Body"),
         MetaModel.description("Some method verbs expect the resource to be sent as a request body. For example, to create a resource, " +
             "the request must include the details of the resource to create. Resources CAN have alternate representations. For example, " +
@@ -100,17 +114,18 @@ export class Method extends MethodBase {
             "property itself).")
     ]
 
-    parametrizedProperties:DataModel.TypeInstance
-    $parametrizedProperties = [
-        MetaModel.customHandling(),
-        MetaModel.description("For types defined in resource types returns object representation of parametrized properties")
-    ]
+    // parametrizedProperties:any
+    // $parametrizedProperties = [
+    //     MetaModel.customHandling(),
+    //     MetaModel.description("For types defined in resource types returns object representation of parametrized properties")
+    // ]
 
 }
 
 export class Operation extends Annotable {
     queryParameters:DataModel.TypeDeclaration[]
     $queryParameters=[
+        MetaModel.embeddedInMaps(),
         MetaModel.setsContextValue("fieldOrParam",true),
         MetaModel.setsContextValue("location",DataModel.ModelLocation.QUERY),
         MetaModel.setsContextValue("locationKind",DataModel.LocationKind.APISTRUCTURE),
@@ -122,6 +137,7 @@ export class Operation extends Annotable {
 
     headers:DataModel.TypeDeclaration[];
     $headers=[
+        MetaModel.embeddedInMaps(),
         MetaModel.setsContextValue("fieldOrParam",true),
         MetaModel.setsContextValue("location",DataModel.ModelLocation.HEADERS),
         MetaModel.setsContextValue("locationKind",DataModel.LocationKind.APISTRUCTURE),
@@ -136,6 +152,7 @@ export class Operation extends Annotable {
 
     responses:Bodies.Response[]
     $responses=[
+        MetaModel.embeddedInMaps(),
         MetaModel.setsContextValue("response","true"),
         MetaModel.newInstanceName("New Response"),
         MetaModel.description("Information about the expected responses to a request"),

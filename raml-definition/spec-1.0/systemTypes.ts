@@ -79,19 +79,14 @@ export class BooleanType extends ValueType {
 }//FIXME
 
 
-export class Reference<T> extends ValueType {
-  structuredValue: DataModel.TypeInstance
-  $structuredValue=[
-    MetaModel.customHandling(),
-    MetaModel.description("Returns a structured object if the reference point to one.")
-  ]
+export class Reference {
 
   name:string
   $name=[
     MetaModel.customHandling(),
     MetaModel.description("Returns name of referenced object")
   ]
-}//this is not true ...FIXME
+}
 
 
 export class UriTemplate extends StringType {

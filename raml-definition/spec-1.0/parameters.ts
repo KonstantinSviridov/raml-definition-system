@@ -9,6 +9,7 @@ var index:MetaModel.SpecPartMetaData={
 }
 
 export class FileTypeDeclaration extends DataModel.TypeDeclaration {
+    $avaliableToUser
   type="file"
 
   fileTypes:Sys.ContentType[]
@@ -25,6 +26,7 @@ export class FileTypeDeclaration extends DataModel.TypeDeclaration {
   ]
 
   $=[
+      MetaModel.availableToUser(),
     MetaModel.description("(Applicable only to Form properties) Value is a file. Client generators SHOULD use this type to " +
       "handle file uploads correctly.")
     ]

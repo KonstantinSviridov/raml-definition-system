@@ -29,12 +29,6 @@ export class ExampleSpec  extends Annotable{
     MetaModel.valueDescription("* Valid value for this type<br>* String representing the serialized version of a valid value")
   ]
 
-  structuredValue:TypeInstance;
-  $structuredValue=[
-    MetaModel.customHandling(),
-    MetaModel.description("Returns object representation of example, if possible")
-  ]
-
   strict:boolean
   $strict=[
     MetaModel.description("By default, examples are validated against any type declaration. Set this to false to allow " +
@@ -93,7 +87,7 @@ export class TypeDeclaration extends Annotable{
     MetaModel.hide()
   ]
 
-  fixedFacets:TypeInstance;
+  fixedFacets:TypeExtension[];
   $fixedFacets = [
     MetaModel.customHandling(),
     MetaModel.description("Returns facets fixed by the type. Value is an object with properties named after facets fixed. " +
@@ -110,7 +104,7 @@ export class TypeDeclaration extends Annotable{
     MetaModel.valueDescription("Single string denoting the base type or type expression")
   ]
 
-  type:string;
+  type:any;
   $type=[
     MetaModel.typeExpression(),
     MetaModel.allowMultiple(),
@@ -120,16 +114,6 @@ export class TypeDeclaration extends Annotable{
     MetaModel.description("A base type which the current type extends, or more generally a type expression."),
     MetaModel.valueDescription("string denoting the base type or type expression")
   ]
-
-  structuredType:TypeInstance;
-  $structuredType=[
-    MetaModel.customHandling(),
-    MetaModel.typeExpression(),
-    MetaModel.description("Inlined supertype definition."),
-    MetaModel.valueDescription("Inlined supertype definition")
-  ]
-
-  
 
   location:ModelLocation
   $location=[
@@ -161,6 +145,7 @@ export class TypeDeclaration extends Annotable{
 
   examples:ExampleSpec[]
   $examples=[
+    MetaModel.embeddedInMaps(),
     MetaModel.example(),
     MetaModel.selfNode(),
     MetaModel.description("An example of this type instance represented as string. This can be used, e.g., by documentation " +
@@ -178,6 +163,7 @@ export class TypeDeclaration extends Annotable{
   ]
 
   $=[
+      MetaModel.availableToUser(),
     MetaModel.convertsToGlobalOfType("SchemaString"),MetaModel.canInherit("mediaType"),
     MetaModel.possibleInterfaces(["FragmentDeclaration"])
   ]
@@ -226,15 +212,21 @@ export class TypeDeclaration extends Annotable{
     MetaModel.valueDescription("An array, or single, of names allowed target nodes.")
   ]
   
-  isAnnotation:boolean
-  $isAnnotation = [ MetaModel.description("Whether the type represents annotation") ]
+//  isAnnotation:boolean
+//  $isAnnotation = [ MetaModel.description("Whether the type represents annotation") ]
 
-  parametrizedProperties:TypeInstance
-  $parametrizedProperties = [
-    MetaModel.customHandling(),
-    MetaModel.description("For types defined in traits or resource types returns object representation of parametrized properties")
-  ]
+  // parametrizedProperties:any
+  // $parametrizedProperties = [
+  //   MetaModel.customHandling(),
+  //   MetaModel.description("For types defined in traits or resource types returns object representation of parametrized properties")
+  // ]
 }
+export class TypeExtension {
+    name: string
+
+    value: any
+}
+
 export class XMLFacetInfo extends Annotable{
   attribute:	boolean
   $attribute=[MetaModel.description("If attribute is set to true, a type instance should be serialized as an XML attribute. It can only be true for scalar types.")]
@@ -258,6 +250,7 @@ export class ArrayTypeDeclaration extends TypeDeclaration {
   type="array"
 
   $=[
+      MetaModel.availableToUser(),
     MetaModel.convertsToGlobalOfType("SchemaString"),
     MetaModel.alias("array"),
     MetaModel.declaresSubTypeOf("TypeDeclaration")
@@ -276,14 +269,6 @@ export class ArrayTypeDeclaration extends TypeDeclaration {
     MetaModel.canBeValue(),
     MetaModel.description("Array component type."),
     MetaModel.valueDescription("Inline type declaration or type name.")
-  ]
-
-  structuredItems:TypeInstance;
-  $structuredItems=[
-    MetaModel.customHandling(),
-    MetaModel.typeExpression(),
-    MetaModel.description("Inlined component type definition"),
-    MetaModel.valueDescription("Inlined component type definition")
   ]
 
   minItems: number
@@ -305,6 +290,7 @@ export class UnionTypeDeclaration extends TypeDeclaration {
   type="union"
 
   $=[
+      MetaModel.availableToUser(),
     MetaModel.convertsToGlobalOfType("SchemaString"),
     MetaModel.requireValue("locationKind",LocationKind.MODELS),
     MetaModel.declaresSubTypeOf("TypeDeclaration")
@@ -317,6 +303,7 @@ export class ObjectTypeDeclaration extends TypeDeclaration{
   ]
 
   $=[
+      MetaModel.availableToUser(),
     MetaModel.definingPropertyIsEnough("properties"),
     MetaModel.setsContextValue("field","true"),
     MetaModel.convertsToGlobalOfType("SchemaString"),
@@ -372,7 +359,9 @@ export class ObjectTypeDeclaration extends TypeDeclaration{
 
 export class StringTypeDeclaration extends TypeDeclaration {
   type="string"
-  $=[MetaModel.description("Value must be a string"),MetaModel.declaresSubTypeOf("TypeDeclaration")]
+  $=[
+      MetaModel.availableToUser(),
+      MetaModel.description("Value must be a string"),MetaModel.declaresSubTypeOf("TypeDeclaration")]
 
   pattern:string;
   $pattern=[
@@ -407,6 +396,7 @@ export class StringTypeDeclaration extends TypeDeclaration {
 export class BooleanTypeDeclaration extends TypeDeclaration{
   type="boolean"
   $=[
+      MetaModel.availableToUser(),
     MetaModel.description("Value must be a boolean"),
     MetaModel.declaresSubTypeOf("TypeDeclaration")
   ]
@@ -419,6 +409,7 @@ export class NumberTypeDeclaration extends TypeDeclaration{
   type="number"
 
   $=[
+      MetaModel.availableToUser(),
     MetaModel.description("Value MUST be a number. Indicate floating point numbers as defined by YAML."),
     MetaModel.declaresSubTypeOf("TypeDeclaration")
   ]
@@ -461,6 +452,7 @@ export class IntegerTypeDeclaration extends NumberTypeDeclaration{
   type="integer"
 
   $=[
+      MetaModel.availableToUser(),
     MetaModel.description("Value MUST be a integer."),
     MetaModel.declaresSubTypeOf("TypeDeclaration")
   ]
@@ -476,6 +468,7 @@ export class DateOnlyTypeDeclaration extends TypeDeclaration{
   type="date-only"
 
   $=[
+      MetaModel.availableToUser(),
     MetaModel.description(`the "full-date" notation of RFC3339, namely yyyy-mm-dd (no implications about time or timezone-offset)`),
     MetaModel.declaresSubTypeOf("TypeDeclaration")
   ]
@@ -486,6 +479,7 @@ export class TimeOnlyTypeDeclaration extends TypeDeclaration{
   type="time-only"
 
   $=[
+      MetaModel.availableToUser(),
     MetaModel.description(`the "partial-time" notation of RFC3339, namely hh:mm:ss[.ff...] (no implications about date or timezone-offset)`),
     MetaModel.declaresSubTypeOf("TypeDeclaration")
   ]
@@ -495,6 +489,7 @@ export class DateTimeOnlyTypeDeclaration extends TypeDeclaration{
   type="datetime-only"
 
   $=[
+      MetaModel.availableToUser(),
     MetaModel.description(`combined date-only and time-only with a separator of "T", namely yyyy-mm-ddThh:mm:ss[.ff...] (no implications about timezone-offset)`),
     MetaModel.declaresSubTypeOf("TypeDeclaration")
   ]
@@ -505,6 +500,7 @@ export class DateTimeTypeDeclaration extends TypeDeclaration{
   type="datetime"
 
   $=[
+      MetaModel.availableToUser(),
     MetaModel.description(`a timestamp, either in the "date-time" notation of RFC3339, if format is omitted or is set to rfc3339, or in the format defined in RFC2616, if format is set to rfc2616.`),
     MetaModel.declaresSubTypeOf("TypeDeclaration")
   ]
@@ -513,59 +509,12 @@ export class DateTimeTypeDeclaration extends TypeDeclaration{
   $format=[MetaModel.oneOf(['rfc3339','rfc2616']),MetaModel.description('Format used for this date time rfc3339 or rfc2616')]
 }
 
-export class TypeInstance {
-  $ = [
-    MetaModel.customHandling()
-  ]
+export class NilTypeDeclaration extends TypeDeclaration{
+    type="datetime-only"
 
-  properties:TypeInstanceProperty[]
-  $properties=[
-    MetaModel.description("Array of instance properties")
-  ]
-
-  isScalar:boolean
-  $isScalar=[
-    MetaModel.description("Whether the type is scalar")
-  ]
-
-  value:any
-  $value=[
-    MetaModel.description("For instances of scalar types returns scalar value")
-  ]
-
-  isArray:boolean
-  $isArray=[
-    MetaModel.description("Indicates whether the instance is array")
-  ]
-
-  items:TypeInstance[]
-  $items=[
-    MetaModel.description("Returns components of array instances")
-  ]
-}
-
-export class TypeInstanceProperty {
-  $=[
-    MetaModel.customHandling()
-  ]
-
-  name:string
-  $name=[
-    MetaModel.description("Property name")
-  ]
-
-  value:TypeInstance
-  $value=[
-    MetaModel.description("Property value")
-  ]
-
-  values:TypeInstance[]
-  $values=[
-    MetaModel.description("Array of values if property value is array")
-  ]
-
-  isArray:boolean
-  $isArray = [
-    MetaModel.description("Whether property has array as value")
-  ]
+    $=[
+        MetaModel.availableToUser(),
+        MetaModel.description(`The type has single instance: null`),
+        MetaModel.declaresSubTypeOf("TypeDeclaration")
+    ]
 }

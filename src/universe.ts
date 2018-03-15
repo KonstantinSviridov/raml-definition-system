@@ -1481,11 +1481,6 @@ var Universes={
         },
         "documentation": {
           "name": "documentation"
-        },
-        "RAMLVersion": {
-          "name": "RAMLVersion",
-          "range": "StringType",
-          "domain": "Api"
         }
       }
     },
@@ -1757,14 +1752,6 @@ var Universes={
     "Reference": {
       "name": "Reference",
       "properties": {
-        "annotations": {
-          "name": "annotations"
-        },
-        "structuredValue": {
-          "name": "structuredValue",
-          "range": "TypeInstance",
-          "domain": "Reference"
-        },
         "name": {
           "name": "name",
           "range": "StringType",
@@ -1856,11 +1843,6 @@ var Universes={
         },
         "description": {
           "name": "description"
-        },
-        "structuredValue": {
-          "name": "structuredValue",
-          "range": "TypeInstance",
-          "domain": "ExampleSpec"
         }
       }
     },
@@ -1912,23 +1894,21 @@ var Universes={
         "allowedTargets": {
           "name": "allowedTargets"
         },
-        "isAnnotation": {
-          "name": "isAnnotation"
-        },
         "fixedFacets": {
           "name": "fixedFacets",
-          "range": "TypeInstance",
+          "range": "TypeExtension",
           "domain": "TypeDeclaration"
+        }
+      }
+    },
+    "TypeExtension": {
+      "name": "TypeExtension",
+      "properties": {
+        "name": {
+          "name": "name"
         },
-        "structuredType": {
-          "name": "structuredType",
-          "range": "TypeInstance",
-          "domain": "TypeDeclaration"
-        },
-        "parametrizedProperties": {
-          "name": "parametrizedProperties",
-          "range": "TypeInstance",
-          "domain": "TypeDeclaration"
+        "value": {
+          "name": "value"
         }
       }
     },
@@ -2003,9 +1983,6 @@ var Universes={
         "allowedTargets": {
           "name": "allowedTargets"
         },
-        "isAnnotation": {
-          "name": "isAnnotation"
-        },
         "uniqueItems": {
           "name": "uniqueItems"
         },
@@ -2017,11 +1994,6 @@ var Universes={
         },
         "maxItems": {
           "name": "maxItems"
-        },
-        "structuredItems": {
-          "name": "structuredItems",
-          "range": "TypeInstance",
-          "domain": "ArrayTypeDeclaration"
         }
       }
     },
@@ -2072,9 +2044,6 @@ var Universes={
         },
         "allowedTargets": {
           "name": "allowedTargets"
-        },
-        "isAnnotation": {
-          "name": "isAnnotation"
         }
       }
     },
@@ -2125,9 +2094,6 @@ var Universes={
         },
         "allowedTargets": {
           "name": "allowedTargets"
-        },
-        "isAnnotation": {
-          "name": "isAnnotation"
         },
         "properties": {
           "name": "properties"
@@ -2200,9 +2166,6 @@ var Universes={
         "allowedTargets": {
           "name": "allowedTargets"
         },
-        "isAnnotation": {
-          "name": "isAnnotation"
-        },
         "pattern": {
           "name": "pattern"
         },
@@ -2265,9 +2228,6 @@ var Universes={
         "allowedTargets": {
           "name": "allowedTargets"
         },
-        "isAnnotation": {
-          "name": "isAnnotation"
-        },
         "enum": {
           "name": "enum"
         }
@@ -2320,9 +2280,6 @@ var Universes={
         },
         "allowedTargets": {
           "name": "allowedTargets"
-        },
-        "isAnnotation": {
-          "name": "isAnnotation"
         },
         "minimum": {
           "name": "minimum"
@@ -2389,9 +2346,6 @@ var Universes={
         "allowedTargets": {
           "name": "allowedTargets"
         },
-        "isAnnotation": {
-          "name": "isAnnotation"
-        },
         "minimum": {
           "name": "minimum"
         },
@@ -2456,9 +2410,6 @@ var Universes={
         },
         "allowedTargets": {
           "name": "allowedTargets"
-        },
-        "isAnnotation": {
-          "name": "isAnnotation"
         }
       }
     },
@@ -2509,9 +2460,6 @@ var Universes={
         },
         "allowedTargets": {
           "name": "allowedTargets"
-        },
-        "isAnnotation": {
-          "name": "isAnnotation"
         }
       }
     },
@@ -2562,9 +2510,6 @@ var Universes={
         },
         "allowedTargets": {
           "name": "allowedTargets"
-        },
-        "isAnnotation": {
-          "name": "isAnnotation"
         }
       }
     },
@@ -2616,48 +2561,58 @@ var Universes={
         "allowedTargets": {
           "name": "allowedTargets"
         },
-        "isAnnotation": {
-          "name": "isAnnotation"
-        },
         "format": {
           "name": "format"
         }
       }
     },
-    "TypeInstance": {
-      "name": "TypeInstance",
+    "NilTypeDeclaration": {
+      "name": "NilTypeDeclaration",
       "properties": {
-        "properties": {
-          "name": "properties"
+        "annotations": {
+          "name": "annotations"
         },
-        "isScalar": {
-          "name": "isScalar"
-        },
-        "value": {
-          "name": "value"
-        },
-        "isArray": {
-          "name": "isArray"
-        },
-        "items": {
-          "name": "items"
-        }
-      }
-    },
-    "TypeInstanceProperty": {
-      "name": "TypeInstanceProperty",
-      "properties": {
         "name": {
           "name": "name"
         },
-        "value": {
-          "name": "value"
+        "displayName": {
+          "name": "displayName"
         },
-        "values": {
-          "name": "values"
+        "facets": {
+          "name": "facets"
         },
-        "isArray": {
-          "name": "isArray"
+        "schema": {
+          "name": "schema"
+        },
+        "type": {
+          "name": "type"
+        },
+        "location": {
+          "name": "location"
+        },
+        "locationKind": {
+          "name": "locationKind"
+        },
+        "default": {
+          "name": "default"
+        },
+        "example": {
+          "name": "example"
+        },
+        "examples": {
+          "name": "examples"
+        },
+        "required": {
+          "name": "required"
+        },
+        "description": {
+          "name": "description"
+        },
+        "xml": {
+          "name": "xml"
+        },
+        "allowedTargets": {
+          "name": "allowedTargets"
         }
       }
     },
@@ -2694,11 +2649,6 @@ var Universes={
         },
         "description": {
           "name": "description"
-        },
-        "parametrizedProperties": {
-          "name": "parametrizedProperties",
-          "range": "TypeInstance",
-          "domain": "Response"
         }
       }
     },
@@ -2713,8 +2663,13 @@ var Universes={
     "AnnotationRef": {
       "name": "AnnotationRef",
       "properties": {
-        "annotations": {
-          "name": "annotations"
+        "name": {
+          "name": "name"
+        },
+        "value": {
+          "name": "value",
+          "range": "AnyType",
+          "domain": "AnnotationRef"
         },
         "annotation": {
           "name": "annotation",
@@ -2731,11 +2686,30 @@ var Universes={
         }
       }
     },
+    "TemplateParameter": {
+      "name": "TemplateParameter",
+      "properties": {
+        "name": {
+          "name": "name"
+        },
+        "value": {
+          "name": "value"
+        }
+      }
+    },
+    "TemplateRef": {
+      "name": "TemplateRef",
+      "properties": {
+        "parameters": {
+          "name": "parameters"
+        }
+      }
+    },
     "TraitRef": {
       "name": "TraitRef",
       "properties": {
-        "annotations": {
-          "name": "annotations"
+        "parameters": {
+          "name": "parameters"
         },
         "trait": {
           "name": "trait",
@@ -2786,10 +2760,8 @@ var Universes={
         "usage": {
           "name": "usage"
         },
-        "parametrizedProperties": {
-          "name": "parametrizedProperties",
-          "range": "TypeInstance",
-          "domain": "Trait"
+        "parameters": {
+          "name": "parameters"
         }
       }
     },
@@ -2869,11 +2841,6 @@ var Universes={
         },
         "method": {
           "name": "method"
-        },
-        "parametrizedProperties": {
-          "name": "parametrizedProperties",
-          "range": "TypeInstance",
-          "domain": "Method"
         }
       }
     },
@@ -2965,16 +2932,22 @@ var Universes={
         }
       }
     },
+    "Scope": {
+      "name": "Scope",
+      "properties": {
+        "name": {
+          "name": "name"
+        },
+        "description": {
+          "name": "description"
+        }
+      }
+    },
     "SecuritySchemeRef": {
       "name": "SecuritySchemeRef",
       "properties": {
-        "annotations": {
-          "name": "annotations"
-        },
-        "securitySchemeName": {
-          "name": "securitySchemeName",
-          "range": "StringType",
-          "domain": "SecuritySchemeRef"
+        "settings": {
+          "name": "settings"
         },
         "securityScheme": {
           "name": "securityScheme",
@@ -3168,8 +3141,8 @@ var Universes={
     "ResourceTypeRef": {
       "name": "ResourceTypeRef",
       "properties": {
-        "annotations": {
-          "name": "annotations"
+        "parameters": {
+          "name": "parameters"
         },
         "resourceType": {
           "name": "resourceType",
@@ -3183,6 +3156,9 @@ var Universes={
       "properties": {
         "annotations": {
           "name": "annotations"
+        },
+        "displayName": {
+          "name": "displayName"
         },
         "methods": {
           "name": "methods"
@@ -3202,19 +3178,14 @@ var Universes={
         "uriParameters": {
           "name": "uriParameters"
         },
-        "displayName": {
-          "name": "displayName"
-        },
         "name": {
           "name": "name"
         },
         "usage": {
           "name": "usage"
         },
-        "parametrizedProperties": {
-          "name": "parametrizedProperties",
-          "range": "TypeInstance",
-          "domain": "ResourceType"
+        "parameters": {
+          "name": "parameters"
         }
       }
     },
@@ -3223,6 +3194,9 @@ var Universes={
       "properties": {
         "annotations": {
           "name": "annotations"
+        },
+        "displayName": {
+          "name": "displayName"
         },
         "methods": {
           "name": "methods"
@@ -3250,6 +3224,9 @@ var Universes={
         "annotations": {
           "name": "annotations"
         },
+        "displayName": {
+          "name": "displayName"
+        },
         "methods": {
           "name": "methods"
         },
@@ -3270,9 +3247,6 @@ var Universes={
         },
         "relativeUri": {
           "name": "relativeUri"
-        },
-        "displayName": {
-          "name": "displayName"
         },
         "resources": {
           "name": "resources"
@@ -3326,9 +3300,6 @@ var Universes={
         },
         "allowedTargets": {
           "name": "allowedTargets"
-        },
-        "isAnnotation": {
-          "name": "isAnnotation"
         },
         "fileTypes": {
           "name": "fileTypes"

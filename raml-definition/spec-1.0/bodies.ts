@@ -19,6 +19,7 @@ export class Response  extends Annotable{
 
   headers:DataModel.TypeDeclaration[];
   $headers=[
+    MetaModel.embeddedInMaps(),
     MetaModel.setsContextValue("fieldOrParam",true),
     MetaModel.setsContextValue("location",DataModel.ModelLocation.HEADERS),
     MetaModel.setsContextValue("locationKind",DataModel.LocationKind.APISTRUCTURE),
@@ -29,6 +30,7 @@ export class Response  extends Annotable{
 
   body:DataModel.TypeDeclaration[]
   $body=[
+    MetaModel.embeddedInMaps(),
     MetaModel.newInstanceName("New Body"),
     MetaModel.description("The body of the response: a body declaration"),
     MetaModel.valueDescription("Object whose properties are either<br>* Media types and whose values are type objects describing " +
@@ -52,9 +54,9 @@ export class Response  extends Annotable{
       "declared annotation name.")
   ]
 
-  parametrizedProperties:DataModel.TypeInstance
-  $parametrizedProperties = [
-    MetaModel.customHandling(),
-    MetaModel.description("For responses defined in traits or resource types returns object representation of parametrized properties")
-  ]
+  // parametrizedProperties:any
+  // $parametrizedProperties = [
+  //   MetaModel.customHandling(),
+  //   MetaModel.description("For responses defined in traits or resource types returns object representation of parametrized properties")
+  // ]
 }

@@ -5,13 +5,13 @@ var locations = {
 
     "RAML10" : "./spec-1.0/api.ts",
 
-    "RAML08" : "./spec-0.8/api.ts"
+    "RAML08" : "./spec-0.8/api.ts",
+
+    "OAS20" : "./oas-2.0/swagger.ts"
 
 };
-var defPath=path.resolve(__dirname,"../raml-definition/")
 
-
-function getDecl(key:string){
+function getDecl(key:string,defPath:string){
 
 
 
@@ -46,6 +46,8 @@ function toModulesCollection(mod:any, map:any={},arr:any[]=[]):any[]{
     return arr;
 }
 
-
-getDecl("RAML08");
-getDecl("RAML10");
+var ramlPath = path.resolve(__dirname,"../raml-definition/");
+var oasPath = path.resolve(__dirname,"../oas-definition/")
+getDecl("RAML08",ramlPath);
+getDecl("RAML10",ramlPath);
+getDecl("OAS20",oasPath);

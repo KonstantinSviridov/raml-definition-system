@@ -179,6 +179,12 @@ export function newInstanceName(n:string){}
  *
  */
 export function embeddedInMaps() {}
+/**
+ * This annotation is persistence related and means
+ * that property values are stored in array. Should be applied to
+ * those properties whose ranges have key() annotated properties
+ */
+export function embeddedInArray() {}
 
 
 export function description(text:string){}
@@ -289,6 +295,11 @@ export function definingPropertyIsEnough(v:string){}
 export function hide(value:boolean=true){}
 
 /**
+ * Hide from UI
+ */
+export function hideFromUI(value:boolean=true){}
+
+/**
  * Marks this class as (hidden)
  */
 export function internalClass(){}
@@ -329,4 +340,6 @@ export function possibleInterfaces(classNames:string[]){}
 
 export function typeExpression(){};
 
-export function example(){};
+export function availableToUser(){};
+
+export function example() {}
