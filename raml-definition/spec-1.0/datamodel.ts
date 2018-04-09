@@ -159,7 +159,8 @@ export class TypeDeclaration extends Annotable{
     MetaModel.description("For property or parameter states if it is required."),
     MetaModel.describesAnnotation("required"),
     MetaModel.hide(),
-    MetaModel.defaultBooleanValue(true)
+    MetaModel.defaultBooleanValue(true),
+    MetaModel.parentPropertiesRestriction([ "properties, queryParameters, headers"] )
   ]
 
   $=[
@@ -209,7 +210,8 @@ export class TypeDeclaration extends Annotable{
     MetaModel.description("Restrictions on where annotations of this type can be applied. If this property is specified, " +
         "annotations of this type may only be applied on a property corresponding to one of the target names specified as the " +
         "value of this property."),
-    MetaModel.valueDescription("An array, or single, of names allowed target nodes.")
+    MetaModel.valueDescription("An array, or single, of names allowed target nodes."),
+    MetaModel.parentPropertiesRestriction([ "annotationTypes"] )
   ]
   
 //  isAnnotation:boolean

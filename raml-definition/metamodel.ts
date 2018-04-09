@@ -343,3 +343,5 @@ export function typeExpression(){};
 export function availableToUser(){};
 
 export function example() {}
+
+export function parentPropertiesRestriction(properties: String[]){}

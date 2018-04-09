@@ -388,6 +388,9 @@ export var annotationHandlers:{[name:string]:AnnotationHandler}={
     },
     customHandling:(a:tsModel.Annotation,f:def.Property)=>{
 
+    },
+    parentPropertiesRestriction:(a:tsModel.Annotation,f:def.Property)=>{
+
     }
 }
 export function recordAnnotation(p:def.Property,a:tsModel.Annotation){
