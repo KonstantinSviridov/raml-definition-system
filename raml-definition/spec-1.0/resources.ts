@@ -49,6 +49,7 @@ export class ResourceType extends ResourceBase  {
     // ]
 
     parameters: string[]
+    $parameters = [ MetaModel.hideFromUI() ]
 }
 
 ///////////////////

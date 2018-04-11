@@ -55,6 +55,7 @@ export class Trait extends MethodBase{
     // ]
 
     parameters: string[]
+    $parameters = [ MetaModel.hideFromUI() ]
 }
 
 
