@@ -53,6 +53,7 @@ export class ItemsObject extends extensions.WithSpecificationExtensions{
 
 export class ParameterObject extends extensions.WithSpecificationExtensions {
 
+    '$ref':string
 
     description:Sys.MarkdownString;
     $description=[MetaModel.description("A brief description. This could contain examples of use. GFM syntax can be used for rich text representation.")]
@@ -162,6 +163,8 @@ export class ResponsesObject extends extensions.WithSpecificationExtensions{
 }
 export class ResponseObject extends extensions.WithSpecificationExtensions{
 
+    '$ref':string
+    
     description:Sys.MarkdownString
     schema:SchemaObject
 
