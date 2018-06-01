@@ -112,6 +112,7 @@ class Api extends LibraryBase {
 
   baseUriParameters:DataModel.TypeDeclaration[]
   $baseUriParameters=[
+    MetaModel.embeddedInMaps(),
     MetaModel.setsContextValue("location",DataModel.ModelLocation.BURI),
     MetaModel.setsContextValue("locationKind",DataModel.LocationKind.APISTRUCTURE),
     MetaModel.description("Named parameters used in the baseUri (template)")
@@ -139,6 +140,7 @@ class Api extends LibraryBase {
 
   securedBy:Security.SecuritySchemeRef[]
   $securedBy=[
+    MetaModel.embeddedInArray(),
     MetaModel.description(`The security schemes that apply to every resource and method in the API`)
   ]
 
@@ -150,6 +152,7 @@ class Api extends LibraryBase {
 
   documentation:DocumentationItem[]
   $documentation=[
+    MetaModel.embeddedInArray(),
     MetaModel.description(`Additional overall documentation for the API`)
   ]
 

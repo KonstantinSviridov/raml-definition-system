@@ -71,6 +71,7 @@ export class ResourceBase extends Annotable{
 
     is:Methods.TraitRef[]
     $is=[
+        MetaModel.embeddedInArray(),
         MetaModel.description("A list of the traits to apply to all methods declared (implicitly or explicitly) for this resource. Individual methods may override this declaration"),
         MetaModel.valueDescription("array, which can contain each of the following elements:<br>* name of unparametrized trait " +
             "<br>* a key-value pair with trait name as key and a map of trait parameters as value<br>* inline trait declaration " +
@@ -89,6 +90,7 @@ export class ResourceBase extends Annotable{
     //TODO FIXME
     securedBy:Security.SecuritySchemeRef[]
     $securedBy=[
+        MetaModel.embeddedInArray(),
         MetaModel.allowNull(),
         MetaModel.description("The security schemes that apply to all methods declared (implicitly or explicitly) for this resource."),
         MetaModel.valueDescription("array of security scheme names or a single security scheme name")
@@ -97,6 +99,7 @@ export class ResourceBase extends Annotable{
 
     uriParameters:DataModel.TypeDeclaration[]
     $uriParameters=[
+        MetaModel.embeddedInMaps(),
         MetaModel.setsContextValue("location",DataModel.ModelLocation.URI),
         MetaModel.setsContextValue("locationKind",DataModel.LocationKind.APISTRUCTURE),
         MetaModel.setsContextValue("fieldOrParam",true),

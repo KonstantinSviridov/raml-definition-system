@@ -60,6 +60,7 @@ module RAMLSpec {
 
     baseUriParameters:Params.Parameter[]
     $baseUriParameters=[
+      MetaModel.embeddedInMaps(),
       MetaModel.setsContextValue("location",Params.ParameterLocation.BURI),
       MetaModel.description("Base uri parameters are named parameters which described template parameters in the base uri")
     ]
@@ -117,6 +118,7 @@ module RAMLSpec {
 
     securedBy:Security.SecuritySchemeRef[]
     $securedBy=[
+      MetaModel.embeddedInArray(),
       MetaModel.allowNull(),
       MetaModel.description("A list of the security schemes to apply to all methods, these must be defined in the " +
       "securitySchemes declaration.")
@@ -149,6 +151,7 @@ module RAMLSpec {
 
     documentation:DocumentationItem[]
     $documentation=[
+      MetaModel.embeddedInArray(),
       MetaModel.description("The API definition can include a variety of documents that serve as a user guides and reference " +
         "documentation for the API. Such documents can clarify how the API works or provide business context. Documentation-generators " +
         "MUST include all the sections in an API definition's documentation property in the documentation output, and they MUST " +

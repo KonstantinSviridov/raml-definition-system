@@ -84,10 +84,11 @@ export class MethodBase extends Operation{
 
 
     is:TraitRef[]
-    $is=[MetaModel.description("Instantiation of applyed traits")]
+    $is=[MetaModel.embeddedInArray(),MetaModel.description("Instantiation of applyed traits")]
 
     securedBy:Security.SecuritySchemeRef[]
     $securedBy=[
+        MetaModel.embeddedInArray(),
         MetaModel.allowNull(),
         MetaModel.description("securityScheme may also be applied to a resource by using the securedBy key, which is equivalent " +
             "to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes " +

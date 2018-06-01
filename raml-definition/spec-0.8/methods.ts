@@ -39,6 +39,7 @@ export class MethodBase {
 
     securedBy:SecuritySchemeRef[]
     $securedBy=[
+        MetaModel.embeddedInArray(),
         MetaModel.allowNull(),
         MetaModel.description("A list of the security schemas to apply, these must be defined in the securitySchemes declaration. " +
             "To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null " +
@@ -86,7 +87,7 @@ export class Method extends MethodBase {
 
     is:TraitRef[]
     $is=[
-        MetaModel.description("Instantiation of applyed traits")
+        MetaModel.embeddedInArray(), MetaModel.description("Instantiation of applyed traits")
     ]
 
     parametrizedProperties:Sys.TypeInstance

@@ -25,11 +25,12 @@ export class Resource {
 
     is:TraitRef[]
     $is=[
-        MetaModel.description("Instantiation of applyed traits")
+        MetaModel.embeddedInArray(), MetaModel.description("Instantiation of applyed traits")
     ]
 
     securedBy:SecuritySchemeRef[]
     $securedBy=[
+        MetaModel.embeddedInArray(),
         MetaModel.allowNull(),
         MetaModel.description("securityScheme may also be applied to a resource by using the securedBy key, which is " +
             "equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by " +
@@ -115,7 +116,7 @@ export class ResourceType implements Sys.DeclaresDynamicType<ResourceType> {
 
     is:Security.TraitRef[]
     $is=[
-        MetaModel.description("Instantiation of applyed traits")
+        MetaModel.embeddedInArray(), MetaModel.description("Instantiation of applyed traits")
     ]
 
     type:ResourceTypeRef
@@ -126,6 +127,7 @@ export class ResourceType implements Sys.DeclaresDynamicType<ResourceType> {
 
     securedBy:Security.SecuritySchemeRef[]
     $securedBy=[
+        MetaModel.embeddedInArray(),
         MetaModel.allowNull(),
         MetaModel.description("securityScheme may also be applied to a resource by using the securedBy key, which is " +
             "equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by " +
@@ -136,6 +138,7 @@ export class ResourceType implements Sys.DeclaresDynamicType<ResourceType> {
 
     uriParameters:Params.Parameter[]
     $uriParameters=[
+        MetaModel.embeddedInMaps(),
         MetaModel.setsContextValue("location",Params.ParameterLocation.URI),
         MetaModel.description("Uri parameters of this resource")
     ]
