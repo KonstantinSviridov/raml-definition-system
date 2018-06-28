@@ -8,26 +8,34 @@ export class ValueType {
 
 export class StringType extends ValueType {
   $=[
-    MetaModel.nameAtRuntime("string")
+    MetaModel.nameAtRuntime("string"),
+    MetaModel.alias("string")
   ]
-
 }
-
 export class AnyType extends ValueType {
   $=[
-    MetaModel.nameAtRuntime("any")
+    MetaModel.nameAtRuntime("any"),
+    MetaModel.alias("any")
   ]
 
 }
 export class NumberType extends ValueType {
   $=[
-    MetaModel.nameAtRuntime("number")
+    MetaModel.nameAtRuntime("number"),
+    MetaModel.alias("number")
+  ]
+}
+export class IntegerType extends ValueType {
+  $=[
+    MetaModel.nameAtRuntime("integer"),
+    MetaModel.alias("integer")
   ]
 }
 
 export class BooleanType extends ValueType{
   $=[
-    MetaModel.nameAtRuntime("boolean")
+    MetaModel.nameAtRuntime("boolean"),
+      MetaModel.alias("boolean")
   ]
 }
 

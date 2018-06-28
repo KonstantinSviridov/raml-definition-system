@@ -33,11 +33,11 @@ export class Parameter {
     MetaModel.canBeDuplicator()
   ]
 
-  location:ParameterLocation
-  $location=[
-    MetaModel.system(),
-    MetaModel.description("Location of the parameter (can not be edited by user)")
-  ]
+  // location:ParameterLocation
+  // $location=[
+  //   MetaModel.system(),
+  //   MetaModel.description("Location of the parameter (can not be edited by user)")
+  // ]
 
   required: boolean
   $required=[
@@ -72,12 +72,12 @@ export class Parameter {
     MetaModel.description("The description attribute describes the intended use or " +
         "meaning of the $self. This value MAY be formatted using Markdown.")
   ]
-
-  parametrizedProperties:Sys.TypeInstance
-  $parametrizedProperties=[
-    MetaModel.customHandling(),
-    MetaModel.description("For parameters defined inside traits and resource types returns object representation of parametrized properties")
-  ]
+  //
+  // parametrizedProperties:Sys.TypeInstance
+  // $parametrizedProperties=[
+  //   MetaModel.customHandling(),
+  //   MetaModel.description("For parameters defined inside traits and resource types returns object representation of parametrized properties")
+  // ]
 }
 
 export class StringTypeDeclaration extends Parameter {

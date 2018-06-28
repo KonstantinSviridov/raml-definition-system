@@ -49,6 +49,7 @@ export class SecuritySchemePart extends Methods.MethodBase {
 
     is:TraitRef[]
     $is=[
+        MetaModel.embeddedInArray(),
         MetaModel.description("Instantiation of applyed traits")
     ]
 }
@@ -109,21 +110,13 @@ export class AbstractSecurityScheme implements Sys.Referencable<AbstractSecurity
 }
 
 export class SecuritySchemeRef extends Sys.Reference<AbstractSecurityScheme>{
-    $=[
-        MetaModel.allowAny()
-    ]
-
-    securitySchemeName:string
-    $securitySchemeName=[
-        MetaModel.customHandling(),
-        MetaModel.description("Returns the name of security scheme, this reference refers to.")
-    ]
-
     securityScheme:AbstractSecurityScheme
     $securityScheme=[
         MetaModel.customHandling(),
         MetaModel.description("Returns AST node of security scheme, this reference refers to, or null.")
     ]
+
+    settings: SecuritySchemeSettings
 }
 
 export class OAuth1SecuritySchemeSettings extends  SecuritySchemeSettings {
@@ -182,10 +175,17 @@ export class OAuth2SecuritySchemeSettings extends  SecuritySchemeSettings {
             "<br>* implicit<br>* refresh_token."),
     ]
 
-    scopes:string[]
+    scopes:Scope[]
+
     $scopes=[
         MetaModel.description("A list of scopes supported by the security scheme as defined in RFC6749 Section 3.3")
     ]
+}
+
+export class Scope{
+    name: string
+
+    description: string
 }
 
 class OAuth2SecurityScheme extends AbstractSecurityScheme {

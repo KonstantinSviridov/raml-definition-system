@@ -67,6 +67,7 @@ module RAMLSpec {
 
     uriParameters:Params.Parameter[]
     $uriParameters=[
+      MetaModel.embeddedInMaps(),
       MetaModel.setsContextValue("location",
       Params.ParameterLocation.BURI),
       MetaModel.description("URI parameters can be further defined by using the uriParameters property. " +

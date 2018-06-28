@@ -16,6 +16,7 @@ export class MethodBase {
 
     responses:Bodies.Response[]
     $responses=[
+        MetaModel.embeddedInMaps(),
         MetaModel.newInstanceName("New Response"),
         MetaModel.description("Resource methods MAY have one or more responses. Responses MAY be described using the description " +
             "property, and MAY include example attributes or schema properties.")
@@ -23,6 +24,7 @@ export class MethodBase {
 
     body:Bodies.BodyLike[]
     $body=[
+        MetaModel.embeddedInMaps(),
         MetaModel.newInstanceName("New Body"),
         MetaModel.description("Some method verbs expect the resource to be sent as a request body. For example, to create a " +
             "resource, the request must include the details of the resource to create. Resources CAN have alternate representations. " +
@@ -50,6 +52,7 @@ export class MethodBase {
 
     baseUriParameters:Params.Parameter[]
     $baseUriParameters=[
+        MetaModel.embeddedInMaps(),
         MetaModel.setsContextValue("fieldOrParam",true),
         MetaModel.setsContextValue("location",Params.ParameterLocation.BURI),
         MetaModel.description("A resource or a method can override a base URI template's values. This is useful to restrict or " +
@@ -59,6 +62,7 @@ export class MethodBase {
 
     queryParameters:Params.Parameter[]
     $queryParameters=[
+        MetaModel.embeddedInMaps(),
         MetaModel.setsContextValue("location",ParameterLocation.QUERY),
         MetaModel.newInstanceName("New query parameter"),
         MetaModel.description("An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming " +
@@ -68,6 +72,7 @@ export class MethodBase {
 
     headers:Params.Parameter[];
     $headers=[
+        MetaModel.embeddedInMaps(),
         MetaModel.setsContextValue("location",ParameterLocation.HEADERS),
         MetaModel.description("Headers that allowed at this position"),
         MetaModel.newInstanceName("New Header"),
@@ -90,11 +95,11 @@ export class Method extends MethodBase {
         MetaModel.embeddedInArray(), MetaModel.description("Instantiation of applyed traits")
     ]
 
-    parametrizedProperties:Sys.TypeInstance
-    $parametrizedProperties=[
-        MetaModel.customHandling(),
-        MetaModel.description("For methods defined inside resource types returns object representation of parametrized properties")
-    ]
+    // parametrizedProperties:Sys.TypeInstance
+    // $parametrizedProperties=[
+    //     MetaModel.customHandling(),
+    //     MetaModel.description("For methods defined inside resource types returns object representation of parametrized properties")
+    // ]
 }
 
 ///////////////////
@@ -118,11 +123,8 @@ export class Trait extends MethodBase implements Sys.DeclaresDynamicType<Trait> 
         MetaModel.description("Instructions on how and when the trait should be used.")
     ]
 
-    parametrizedProperties:Sys.TypeInstance
-    $parametrizedProperties=[
-        MetaModel.customHandling(),
-        MetaModel.description("Returns object representation of parametrized properties of the trait")
-    ]
+    parameters: string[]
+    $parameters = [ MetaModel.hideFromUI() ]
 
     displayName:string
     $displayName=[

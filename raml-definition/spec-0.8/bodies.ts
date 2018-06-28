@@ -50,6 +50,7 @@ export class BodyLike {
   //TODO mime types are open actually open enums are not handled context values are not looked in normal ast not
   //
   $formParameters=[
+      MetaModel.embeddedInMaps(),
     MetaModel.setsContextValue("location",Params.ParameterLocation.FORM),
     MetaModel.description("Web forms REQUIRE special encoding and custom declaration. If the API's media type is either " +
       "application/x-www-form-urlencoded or multipart/form-data, the formParameters property MUST specify the name-value pairs " +
@@ -57,46 +58,46 @@ export class BodyLike {
       "and the value is itself a map the specifies the web form parameter's attributes.")
   ]
 
-  schemaContent:string
-  $schemaContent=[
-    MetaModel.customHandling(),
-    MetaModel.description("Returns schema content for the cases when schema is inlined, when schema is included, and when " +
-      "schema is a reference.")
-  ]
+  // schemaContent:string
+  // $schemaContent=[
+  //   MetaModel.customHandling(),
+  //   MetaModel.description("Returns schema content for the cases when schema is inlined, when schema is included, and when " +
+  //     "schema is a reference.")
+  // ]
 
   description:Sys.MarkdownString;
   $description = [MetaModel.description("Human readable description of the body")];
 
-  parametrizedProperties:Sys.TypeInstance
-  $parametrizedProperties=[
-    MetaModel.customHandling(),
-    MetaModel.description("For bodies defined inside traits and resource types returns object representation of parametrized properties")
-  ]
+  // parametrizedProperties:Sys.TypeInstance
+  // $parametrizedProperties=[
+  //   MetaModel.customHandling(),
+  //   MetaModel.description("For bodies defined inside traits and resource types returns object representation of parametrized properties")
+  // ]
 
 }
 
-//Later we will attach functionality which is specific for XMLBody and JSONBody at this moment they are the same
-export class XMLBody extends BodyLike {
-  //mime="application/xml"
-  schema:Sys.XMLSchemaString
-  $schema=[MetaModel.description("XSD Schema")]
-
-  $=[
-    MetaModel.functionalDescriminator("this.mime.isXML()"),
-    MetaModel.description("Needed to set connection between xml related mime types and xsd schema")
-  ]
-}
-
-export class JSONBody extends BodyLike {
-  //mime="application/json"
-  schema:Sys.JSonSchemaString
-  $schema=[MetaModel.description("JSON Schema")]
-
-  $=[
-    MetaModel.functionalDescriminator("this.mime.isJSON()"),
-    MetaModel.description("Needed to set connection between json related mime types and json schema")
-  ]
-}
+// //Later we will attach functionality which is specific for XMLBody and JSONBody at this moment they are the same
+// export class XMLBody extends BodyLike {
+//   //mime="application/xml"
+//   schema:Sys.XMLSchemaString
+//   $schema=[MetaModel.description("XSD Schema")]
+//
+//   $=[
+//     MetaModel.functionalDescriminator("this.mime.isXML()"),
+//     MetaModel.description("Needed to set connection between xml related mime types and xsd schema")
+//   ]
+// }
+//
+// export class JSONBody extends BodyLike {
+//   //mime="application/json"
+//   schema:Sys.JSonSchemaString
+//   $schema=[MetaModel.description("JSON Schema")]
+//
+//   $=[
+//     MetaModel.functionalDescriminator("this.mime.isJSON()"),
+//     MetaModel.description("Needed to set connection between json related mime types and json schema")
+//   ]
+// }
 
 //TODO CHECK if it all actually extends RAML Language element
 export class Response {
@@ -110,6 +111,7 @@ export class Response {
 
   headers:Params.Parameter[];
   $headers=[
+      MetaModel.embeddedInMaps(),
     MetaModel.setsContextValue("location",Params.ParameterLocation.HEADERS),
     MetaModel.newInstanceName("New Header"),
     MetaModel.description("An API's methods may support custom header values in responses. The custom, non-standard " +
@@ -120,6 +122,7 @@ export class Response {
 
   body:BodyLike[]
   $body=[
+      MetaModel.embeddedInMaps(),
     MetaModel.newInstanceName("New Body"),
     MetaModel.description("Each response MAY contain a body property, which conforms to the same structure as request body " +
     "properties (see Body). Responses that can return more than one response code MAY therefore have multiple bodies defined. " +
@@ -134,9 +137,4 @@ export class Response {
         "meaning of the $self. This value MAY be formatted using Markdown.")
   ]
 
-  parametrizedProperties:Sys.TypeInstance
-  $parametrizedProperties=[
-    MetaModel.customHandling(),
-    MetaModel.description("For responses defined inside traits and resource types returns object representation of parametrized properties")
-  ]
 }
