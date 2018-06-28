@@ -3,7 +3,7 @@ import  Sys = require("./systemTypes")
 import  extensions=require("./extensions")
 
 export class ExternalDocumentationObject extends extensions.WithSpecificationExtensions{
-    description:string
+    description:Sys.MarkdownString
     $description=[MetaModel.description("A short description of the target documentation. GFM syntax can be used for rich text representation.")]
 
 

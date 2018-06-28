@@ -38,7 +38,7 @@ export class SecurityDefinitionObject extends extensions.WithSpecificationExtens
     type:string;
     $type=[MetaModel.oneOf(["basic","apiKey","oauth2"]),MetaModel.descriminatingProperty()];
 
-    description:string;
+    description:Sys.MarkdownString;
 }
 
 export class ApiKey extends SecurityDefinitionObject{
