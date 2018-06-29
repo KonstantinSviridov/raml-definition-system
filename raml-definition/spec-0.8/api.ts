@@ -163,11 +163,6 @@ module RAMLSpec {
         "Markdown.")
     ]
 
-    RAMLVersion:string
-    $RAMLVersion=[
-      MetaModel.customHandling(),
-      MetaModel.description("Returns AST node of security scheme, this reference refers to, or null.")
-    ]
   }
 
   class DocumentationItem extends Common.RAMLSimpleElement{
