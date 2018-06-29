@@ -79,7 +79,7 @@ export class AbstractSecurityScheme implements Sys.Referencable<AbstractSecurity
     type:string
     $type=[
         MetaModel.required(),
-        MetaModel.oneOf(["OAuth 1.0","OAuth 2.0","Basic Authentication","DigestSecurityScheme Authentication","x-{other}"]),
+        MetaModel.oneOf(["OAuth 1.0","OAuth 2.0","Basic Authentication","Digest Authentication","x-{other}"]),
         MetaModel.descriminatingProperty(),//FIXME (we need more clear connection with SecuritySchemeType)
         MetaModel.description("The securitySchemes property MUST be used to specify an API's security mechanisms, including " +
             "the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them."),
