@@ -46,20 +46,14 @@ export class BooleanType extends ValueType{
  */
 export interface Referencable<T>{}
 
-export class Reference<T> extends ValueType {
+export class Reference {
 
-  structuredValue:TypeInstance
-  $structuredValue=[
-    MetaModel.customHandling(),
-    MetaModel.description("Returns a structured object if the reference point to one.")
-  ]
-
-  name:string
-  $name=[
-    MetaModel.customHandling(),
-    MetaModel.description("Returns name of referenced object")
-  ]
-}//this is not true ...FIXME
+    name:string
+    $name=[
+        MetaModel.customHandling(),
+        MetaModel.description("Returns name of referenced object")
+    ]
+}
 
 export interface DeclaresDynamicType<T> extends Referencable<T>{}//For now your still required to put declaresSubtype or inlinedTemplates annotation on the classs
 
