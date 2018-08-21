@@ -35,10 +35,10 @@ export class IntegerType extends ValueType {
     MetaModel.alias("integer")
   ]
 }
-export class NullType extends ValueType {
+export class NilType extends ValueType {
   $=[
-    MetaModel.nameAtRuntime("null"),
-    MetaModel.alias("null")
+    MetaModel.nameAtRuntime("nil"),
+    MetaModel.alias("nil")
   ]
 }
 export class TimeOnlyType extends ValueType {
