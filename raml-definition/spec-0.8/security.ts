@@ -168,6 +168,7 @@ export class OAuth2SecuritySchemeSettings extends  SecuritySchemeSettings {
 
     authorizationGrants:string[]
     $authorizationGrants = [
+        MetaModel.oftenKeys(["code", "token", "owner", "credentials"]),
         MetaModel.description("A list of the Authorization grants supported by the API as defined in RFC6749 Sections 4.1, 4.2, 4.3 " +
             "and 4.4, can be any of: authorization_code, password, client_credentials, implicit, or refresh_token."),
         MetaModel.markdownDescription("A list of the Authorization grants supported by the API as defined in RFC6749 " +
