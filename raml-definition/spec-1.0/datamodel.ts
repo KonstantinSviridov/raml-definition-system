@@ -160,7 +160,7 @@ export class TypeDeclaration extends Annotable{
     MetaModel.describesAnnotation("required"),
     MetaModel.hide(),
     MetaModel.defaultBooleanValue(true),
-    MetaModel.parentPropertiesRestriction([ "properties, queryParameters, headers"] )
+    MetaModel.parentPropertiesRestriction([ "properties", "queryParameters", "headers"] )
   ]
 
   $=[
