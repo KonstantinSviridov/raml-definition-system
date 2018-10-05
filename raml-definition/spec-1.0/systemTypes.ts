@@ -126,7 +126,7 @@ export class MarkdownString extends  StringType{
 }
 
 export class SchemaString extends StringType {
-  $=[MetaModel.description("Schema at this moment only two subtypes are supported (json schema and xsd)"),MetaModel.alias("schema")]
+  $=[MetaModel.description("Schema at this moment only two subtypes are supported (json schema and xsd)")/*,MetaModel.alias("schema")*/]
 }
 
 
