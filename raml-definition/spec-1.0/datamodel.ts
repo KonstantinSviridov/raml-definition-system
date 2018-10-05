@@ -264,7 +264,7 @@ export class ArrayTypeDeclaration extends TypeDeclaration {
     MetaModel.description("Should items in array be unique")
   ]
 
-  items: string
+  items: TypeDeclaration
   $items=[
     MetaModel.typeExpression(),
     MetaModel.allowMultiple(),
